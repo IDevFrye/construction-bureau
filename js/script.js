@@ -94,13 +94,38 @@ $('.modal-order__form').submit(function (event) {
   })
 });
 
-$('.header__burger').on('click', function() {
-  $('.navigation').animate({
-    left: 0,
+$(document).ready(function () {
+  const navigation = $('.navigation');
+  const navigationClose = $('.navigation__close');
 
-  }, 500, function() {
-    $('.navigation__close').animate({
-      opacity: 1,
-    }, 300, 'swing')
+  $('.header__burger').on('click', function (e) {
+    e.stopPropagation();
+    navigation.animate({
+      left: 0,
+    }, 500, function () {
+      navigationClose.animate({
+        opacity: 1,
+      }, 300, 'swing');
+    });
   });
-})
+
+  navigationClose.on('click', function () {
+    navigation.animate({
+      left: -400,
+    }, 500);
+  });
+
+  navigation.on('click', function (e) {
+    e.stopPropagation();
+  });
+
+  $(document).on('click', function () {
+    navigation.animate({
+      left: -400,
+    }, 500);
+  });
+});
+
+
+
+
